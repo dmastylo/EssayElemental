@@ -8,10 +8,26 @@ body
   color: #5a5a5a;
 }
 
-/* Carousel base class */
-#myCarousel {
-    margin-top: 125px;
+textarea {
+    height: 50px;
+    width: 600px;
 }
+
+.supporting {
+    height: 25px;
+    width: 600px;
+}
+
+/* Top bar */
+#header {
+    position: relative;
+    text-align: center;
+    height: 110px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+/* Carousel base class */
 
 .carousel {
   margin-bottom: 60px;
@@ -41,9 +57,9 @@ body
 .carousel-caption {
   background-color: transparent;
   position: static;
-  max-width: 550px;
+  max-width: 800px;
   padding: 0 20px;
-  margin-bottom: 100px;
+  margin-bottom: 50px;
 }
 .carousel-caption h1,
 .carousel-caption .lead {
@@ -56,8 +72,7 @@ body
   margin-top: 10px;
 }
 
-/* RESPONSIVE CSS
--------------------------------------------------- */
+/* RESPONSIVE CSS */
 
 @media (max-width: 979px) {
   .carousel .item {
