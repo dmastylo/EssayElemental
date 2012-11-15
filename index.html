@@ -35,10 +35,10 @@
     <form name="essayBuilder" action="buildEssay.php" method="post">
       <div id="myCarousel" class="carousel slide">
         <div class="carousel-inner">
-          <div class="item active">
+          <!-- <div class="item active">
             <div class="container">
               <div class="carousel-caption">
-                <h1>Name</h1>
+                <h2>Name</h2>
                 <p class="lead">What is your first and last name?</p>
                 <br /><input name="userName" id="userName" type="text" /><br />
                 <a class="btn btn-large btn-primary" href="#">Submit</a>
@@ -48,7 +48,7 @@
           <div class="item">
             <div class="container">
               <div class="carousel-caption">
-                <h1>Date</h1>
+                <h2>Date</h2>
                 <p class="lead">What is today's date?</p>
                 <br /><input name="date" id="date" type="text" /><br />
                 <a class="btn btn-large btn-primary" href="#">Submit</a>
@@ -58,7 +58,7 @@
           <div class="item">
             <div class="container">
               <div class="carousel-caption">
-                <h1>Title</h1>
+                <h2>Title</h2>
                 <p class="lead">What is the title of your paper?</p>
                 <br /><input name="title" id="title" type="text" /><br />
                 <a class="btn btn-large btn-primary" href="#">Submit</a>
@@ -68,7 +68,7 @@
           <div class="item">
             <div class="container">
               <div class="carousel-caption">
-                <h1>Opening Paragraph: Intro</h1>
+                <h2>Opening Paragraph: Intro</h2>
                 <p class="lead">In one or two sentences, tell the reader why the subject of [title] is important.</p>
                 <br /><textarea name="introSentence" id="introSentence" type="textarea" wrap="soft" /></textarea><br />
                 <a class="btn btn-large btn-primary" href="#">Submit</a>
@@ -78,7 +78,7 @@
           <div class="item">
             <div class="container">
               <div class="carousel-caption">
-                <h1>Opening Paragraph: Thesis</h1>
+                <h2>Opening Paragraph: Thesis</h2>
                 <p class="lead">In one sentence, tell the reader what your opinion on the subject of [title] is</p>
                 <br /><textarea name="thesis" id="thesis" type="textarea" wrap="soft" /></textarea><br />
                 <a class="btn btn-large btn-primary" href="#">Submit</a>
@@ -88,7 +88,7 @@
           <div class="item">
             <div class="container">
               <div class="carousel-caption">
-                <h1>Opening Paragraph: Supporting Sentences</h1>
+                <h2>Opening Paragraph: Supporting Sentences</h2>
                 <p class="lead">Talk about some details that prove your point, aim for 5.</p>
                 <br><textarea name="introParaFirstSupporting" id="introParaFirstSupporting" class="supporting" type="textarea" wrap="soft"></textarea><br>
                 <br><textarea name="introParaSecondSupporting" id="introParaSecondSupporting" class="supporting" type="textarea" wrap="soft"></textarea><br>
@@ -102,7 +102,7 @@
           <div class="item">
             <div class="container">
               <div class="carousel-caption">
-                <h1>Opening Paragraph: Transition</h1>
+                <h2>Opening Paragraph: Transition</h2>
                 <p class="lead">In one sentence, mention your first idea in a different way (this should improved)</p>
                 <br /><textarea name="introParaTransition" id="introParaTransition" type="textarea" wrap="soft" /></textarea><br />
                 <a class="btn btn-large btn-primary" href="#">Submit</a>
@@ -112,51 +112,44 @@
           <div class="item">
             <div class="container">
               <div class="carousel-caption">
-                <h1>1st Supportive Paragraph: Intro</h1>
+                <h2>1st Supportive Paragraph: Intro</h2>
                 <p class="lead">Say why idea one is important and link it to the transition sentence you just used</p>
                 <br /><textarea name="firstParaIntro" id="firstParaIntro" type="textarea" wrap="soft" /></textarea><br />
                 <a class="btn btn-large btn-primary" href="#">Submit</a>
               </div>
             </div>
-          </div>
-          <div class="item">
-            <div class="container">
-              <div class="carousel-caption">
-                <h1>Opening Paragraph: Thesis</h1>
-                <p class="lead">In one sentence, tell the reader what your opinion on the subject of [title] is</p>
-                <a class="btn btn-large btn-primary" href="#">Submit</a>
-              </div>
-            </div>
-          </div>
-        </div>
+          </div> -->
+        </div><!-- end Carousel Inner -->
         <!-- <a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a> -->
         <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
-      </div><!-- end carousel -->
+      </div><!-- end myCarousel -->
     </form>
 
 
     <!-- Footer -->
-    <div class="container marketing">
+    <!-- <div class="container marketing"> -->
       <!-- FOOTER -->
-      <footer>
-        <p>&copy; 2012 Damian Mastylo</p>
-      </footer>
-    </div><!-- end container -->
+      <!-- <footer> -->
+        <!-- <p>&copy; 2012 Damian Mastylo</p> -->
+      <!-- </footer> -->
+    <!-- </div> --><!-- end container -->
 
     <!-- Javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="js/jquery-1.8.2.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script>
-      !function ($) {
-        $(function(){
-          // carousel demo
-          $('#myCarousel').carousel({
-            interval: false;
-          })
-        })
-      }(window.jQuery)
+    <script src="js/jquery-1.8.2.min.js" language="Javascript" type="text/javascript"></script>
+    <script src="js/bootstrap.min.js" language="Javascript" type="text/javascript"></script>
+
+    <!-- Essay Builder -->
+    <script src="js/generateSlides.js" language="Javascript" type="text/javascript"></script>
+
+    <!-- Carousel -->
+    <script language="Javascript" type="text/javascript">
+      $(document).ready(function(){
+        $('#myCarousel').carousel({
+          interval: false
+        });
+      });
     </script>
   </body>
 </html>
