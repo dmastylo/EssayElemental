@@ -1,34 +1,30 @@
 /* GLOBAL STYLES */
 /* Padding below the footer and lighter body text */
 
+html
+{
+    height: 100%;
+}
+
 body
 {
-  padding-bottom: 40px;
+  height: 100%;
+  /*padding-bottom: 40px;*/
   background-color: #F2F2F2;
   color: #5a5a5a;
 }
 
 textarea {
-    height: 50px;
-    width: 600px;
+    height: 25px;
+    width: 750px;
 }
 
 .supporting {
     height: 25px;
-    width: 600px;
-}
-
-/* Top bar */
-#header {
-    position: relative;
-    text-align: center;
-    height: 110px;
-    margin-top: 20px;
-    margin-bottom: 10px;
+    width: 750px;
 }
 
 /* Carousel base class */
-
 .carousel {
   margin-bottom: 60px;
 }
@@ -43,13 +39,14 @@ textarea {
 .carousel-control {
   background-color: transparent;
   border: 0;
-  font-size: 120px;
-  margin-top: 0;
+  font-size: 40px;
+  margin-top: 15px;
+  margin-right: 80px;
   text-shadow: 0 1px 1px rgba(0,0,0,.4);
 }
 
 .carousel .item {
-  height: 500px;
+  height: 250px;
   background-image: url('../img/debut_dark.png');
   background-repeat: repeat;
 }
@@ -59,7 +56,7 @@ textarea {
   position: static;
   max-width: 800px;
   padding: 0 20px;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
 }
 .carousel-caption h2,
 .carousel-caption .lead {
@@ -73,14 +70,13 @@ textarea {
 }
 
 /* RESPONSIVE CSS */
-
 @media (max-width: 979px) {
   .carousel .item {
-    height: 500px;
+    height: 250px;
   }
   .carousel img {
     width: auto;
-    height: 500px;
+    height: 250px;
   }
 }
 
@@ -94,10 +90,10 @@ textarea {
 
   }
   .carousel .item {
-    height: 300px;
+    height: 250px;
   }
   .carousel img {
-    height: 300px;
+    height: 250px;
   }
   .carousel-caption {
     width: 65%;
@@ -111,4 +107,26 @@ textarea {
   .carousel-caption .btn {
     font-size: 18px;
   }
+
+  #footer {
+      margin-left: -20px;
+      margin-right: -20px;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+}
+
+/* Sticky Footer */
+/* Wrapper for page content to push down footer */
+#wrap {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    /* Negative indent footer by it's height */
+    margin: 0 auto -250px;
+}
+
+/* Set the fixed height of the footer here */
+#push, #footer {
+    height: 250px;
 }

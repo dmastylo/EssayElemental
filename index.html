@@ -25,114 +25,27 @@
         <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
   </head>
   <body>
-    <div id="header">
-      <div id="content">
-        <h1>Essay Elemental</h1>
-        <h3>Learn to write, quickly, painlessly, and easily!</h3>
+    <!-- Content -->
+    <div id="wrap">
+      <div class="container">
+        <div id="essay"></div>
+
+        <div id="push"></div>
       </div>
     </div>
+
     <!-- Carousel -->
-    <form name="essayBuilder" action="buildEssay.php" method="post">
+    <div id="footer">
       <div id="myCarousel" class="carousel slide">
-        <div class="carousel-inner">
-          <!-- <div class="item active">
-            <div class="container">
-              <div class="carousel-caption">
-                <h2>Name</h2>
-                <p class="lead">What is your first and last name?</p>
-                <br /><input name="userName" id="userName" type="text" /><br />
-                <a class="btn btn-large btn-primary" href="#">Submit</a>
-              </div>
-            </div>
+        <form name="essayBuilder">
+          <div class="carousel-inner">
+            <!-- Filled in by generateSlides.js -->
           </div>
-          <div class="item">
-            <div class="container">
-              <div class="carousel-caption">
-                <h2>Date</h2>
-                <p class="lead">What is today's date?</p>
-                <br /><input name="date" id="date" type="text" /><br />
-                <a class="btn btn-large btn-primary" href="#">Submit</a>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="container">
-              <div class="carousel-caption">
-                <h2>Title</h2>
-                <p class="lead">What is the title of your paper?</p>
-                <br /><input name="title" id="title" type="text" /><br />
-                <a class="btn btn-large btn-primary" href="#">Submit</a>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="container">
-              <div class="carousel-caption">
-                <h2>Opening Paragraph: Intro</h2>
-                <p class="lead">In one or two sentences, tell the reader why the subject of [title] is important.</p>
-                <br /><textarea name="introSentence" id="introSentence" type="textarea" wrap="soft" /></textarea><br />
-                <a class="btn btn-large btn-primary" href="#">Submit</a>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="container">
-              <div class="carousel-caption">
-                <h2>Opening Paragraph: Thesis</h2>
-                <p class="lead">In one sentence, tell the reader what your opinion on the subject of [title] is</p>
-                <br /><textarea name="thesis" id="thesis" type="textarea" wrap="soft" /></textarea><br />
-                <a class="btn btn-large btn-primary" href="#">Submit</a>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="container">
-              <div class="carousel-caption">
-                <h2>Opening Paragraph: Supporting Sentences</h2>
-                <p class="lead">Talk about some details that prove your point, aim for 5.</p>
-                <br><textarea name="introParaFirstSupporting" id="introParaFirstSupporting" class="supporting" type="textarea" wrap="soft"></textarea><br>
-                <br><textarea name="introParaSecondSupporting" id="introParaSecondSupporting" class="supporting" type="textarea" wrap="soft"></textarea><br>
-                <br><textarea name="introParaThirdSupporting" id="introParaThirdSupporting" class="supporting" type="textarea" wrap="soft"></textarea><br>
-                <br><textarea name="introParaFourthSupporting" id="introParaFourthSupporting" class="supporting" type="textarea" wrap="soft"></textarea><br>
-                <br><textarea name="introParaFifthSupporting" id="introParaFifthSupporting" class="supporting" type="textarea" wrap="soft"></textarea><br>
-                <a class="btn btn-large btn-primary" href="#">Submit</a>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="container">
-              <div class="carousel-caption">
-                <h2>Opening Paragraph: Transition</h2>
-                <p class="lead">In one sentence, mention your first idea in a different way (this should improved)</p>
-                <br /><textarea name="introParaTransition" id="introParaTransition" type="textarea" wrap="soft" /></textarea><br />
-                <a class="btn btn-large btn-primary" href="#">Submit</a>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="container">
-              <div class="carousel-caption">
-                <h2>1st Supportive Paragraph: Intro</h2>
-                <p class="lead">Say why idea one is important and link it to the transition sentence you just used</p>
-                <br /><textarea name="firstParaIntro" id="firstParaIntro" type="textarea" wrap="soft" /></textarea><br />
-                <a class="btn btn-large btn-primary" href="#">Submit</a>
-              </div>
-            </div>
-          </div> -->
-        </div><!-- end Carousel Inner -->
+        </form>
         <!-- <a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a> -->
-        <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">Next</a>
       </div><!-- end myCarousel -->
-    </form>
-
-
-    <!-- Footer -->
-    <!-- <div class="container marketing"> -->
-      <!-- FOOTER -->
-      <!-- <footer> -->
-        <!-- <p>&copy; 2012 Damian Mastylo</p> -->
-      <!-- </footer> -->
-    <!-- </div> --><!-- end container -->
+    </div>
 
     <!-- Javascript
     ================================================== -->
