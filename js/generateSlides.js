@@ -1,116 +1,81 @@
+function slideContent(title, question, numFields, inputField, inputName)
+{
+    this.title = title;
+    this.question = question;
+    this.numFields = numFields;
+    this.inputField = inputField;
+    this.inputName = inputName;
+}
+
 var slides = [];
 
-slides[slides.length] = {
-    title: "Name",
-    question: "What is your first and last name?",
-    inputField: "text",
-    inputName: "userName"
-};
+slides[slides.length] = new slideContent("Name", "What is your first and last name?", 1, "text", "userName");
+slides[slides.length] = new slideContent("Date", "What is today's date?", 1, "text", "date");
+slides[slides.length] = new slideContent("Title", "What is the title of your paper?", 1, "text", "title");
+slides[slides.length] = new slideContent("Opening Paragraph: Intro",
+                                         "In one or two sentences, tell the reader why the subject of [title] is important.",
+                                         1, "textarea", "introSentence");
+slides[slides.length] = new slideContent("Opening Paragraph: Supporting Sentence",
+                                         "Talk about some details that prove your point, aim for 5.",
+                                         5, "textarea", "openParaSupporting");
+slides[slides.length] = new slideContent("Opening Paragraph: Thesis",
+                                         "In one sentence, tell the reader what your opinion on the subject of [title] is.",
+                                         1, "textarea", "thesis");
+slides[slides.length] = new slideContent("Opening Paragraph: Transition",
+                                         "In one sentence mention your first idea in a different way.",
+                                         1, "textarea", "openParaTransition");
+slides[slides.length] = new slideContent("1st Supportive Paragraph: Intro",
+                                         "Say why idea 1 is important and link it to the transition sentence you just used.",
+                                         1, "textarea", "para1Intro");
+slides[slides.length] = new slideContent("1st Supportive Paragraph: Supporting Sentence",
+                                         "State a fact that supports your claim.",
+                                         5, "textarea", "para1Supporting");
+slides[slides.length] = new slideContent("1st Supportive Paragraph: Recap",
+                                         "Restate your idea.",
+                                         1, "textarea", "para1Recap");
+slides[slides.length] = new slideContent("1st Supportive Paragraph: Transition",
+                                         "In one sentence, mention your first idea in a different way.",
+                                         1, "textarea", "openParaTransition");
 
-slides[slides.length] = {
-    title: "Date",
-    question: "What is today's date?",
-    inputField: "text",
-    inputName: "date"
-};
-
-slides[slides.length] = {
-    title: "Title",
-    question: "What is the title of your paper?",
-    inputField: "text",
-    inputName: "title"
-};
-
-slides[slides.length] = {
-    title: "Opening Paragraph: Intro",
-    question: "In one or two sentences, tell the reader why the subject of [title] is important.",
-    inputField: "textarea",
-    inputName: "introSentence"
-};
-
-slides[slides.length] = {
-    title: "Opening Paragraph: Supporting Sentences",
-    question: "Talk about some details that prove your point, aim for 5.",
-    numFields: 5,
-    inputField: "textarea",
-    inputName: "openParaSupporting"
-};
-
-slides[slides.length] = {
-    title: "Opening Paragraph: Thesis",
-    question: "In one sentence, tell the reader what your opinion on the subject of [title] is.",
-    inputField: "textarea",
-    inputName: "thesis"
-};
-
-slides[slides.length] = {
-    title: "Opening Paragraph: Transition",
-    question: "In one sentence, mention your first idea in a different way.",
-    inputField: "textarea",
-    inputName: "openParaTransition"
-};
-
-slides[slides.length] = {
-    title: "1st Supportive Paragraph: Intro",
-    question: "Say why idea one is important and link it to the transition sentence you just used",
-    inputField: "textarea",
-    inputName: "firstParaIntro"
-};
-
-$(document).ready(function() {
+$(document).ready(function()
+{
     for (i = 0; i < slides.length; ++i)
     {
-        var numFields;
-        if (slides[i].hasOwnProperty("numFields"))
-        {
-            numFields = slides[i].numFields;
-        }
-        else
-        {
-            numFields = 1;
-        }
-
+        var numFields = slides[i].numFields;
         for (j = 0; j < numFields; ++j)
         {
             var slide = [];
 
-            if (i === 0)
-            {
-                slide = ['<div class="item active">', '<div class="container">', '<div class="carousel-caption">'];
-            }
-            else
-            {
-                slide = ['<div class="item">', '<div class="container">', '<div class="carousel-caption">'];
-            }
+            // initialize with initial divs
+            var item = (i === 0) ? "item active" : "item";
+            slide = ['<div class="' + item + '">',
+                     '<div class="container">',
+                     '<div class="carousel-caption">'];
 
-            if (numFields > 1)
-            {
-                slide[slide.length] = '<h2>' + slides[i].title + ' ' + (j + 1) + '</h2>';
-            }
-            else
-            {
-                slide[slide.length] = '<h2>' + slides[i].title + '</h2>';
-            }
+            // determine what the title is based on the numFields
+            var title = (numFields > 1) ? slides[i].title + ' ' + (j + 1) : slides[i].title;
+            slide[slide.length] = '<h2>' + title + '</h2>';
 
             slide[slide.length] = '<p class="lead">' + slides[i].question + '</p>';
             
-            if (slides[i].inputField === "text")
-            {
-                slide[slide.length] = '<br><input name="' + (slides[i].inputName + j) + '" id="' + (slides[i].inputName + j) + '" type="' + slides[i].inputField + '"><br>';
-            }
-            else if (slides[i].inputField === "textarea")
-            {
-                slide[slide.length] = '<br><textarea name="' + (slides[i].inputName + j) + '" id="' + (slides[i].inputName + j) + '" type="' + slides[i].inputField + '" wrap="soft"></textarea><br>';
-            }
+            // It's either a text or textarea input
+            slide[slide.length] = (slides[i].inputField === "text") ?
+                '<br><input name="' + (slides[i].inputName + j) + '" id="' + (slides[i].inputName + j) + '" type="' + slides[i].inputField + '"><br>'
+                :
+                '<br><textarea name="' + (slides[i].inputName + j) + '" id="' + (slides[i].inputName + j) + '" type="' + slides[i].inputField + '" wrap="soft"></textarea><br>';
 
             slide[slide.length] = '<a id="' + (slides[i].inputName + j) + 'Submit" class="btn btn-large btn-primary">Submit</a>';
             slide[slide.length] = '</div>';
             slide[slide.length] = '</div>';
             slide[slide.length] = '</div>';
-            
+
             $('.carousel-inner').append(slide.join(''));
+
+            // Add the spans for essay creation
+            // intial 3 elements like name, date, title
             if (i < 3)
             {
+                // center the title
                 if (slides[i].inputName === "title")
                 {
                     $('#essay').append('<br><center><span id="' + (slides[i].inputName + j) + 'Output">');
