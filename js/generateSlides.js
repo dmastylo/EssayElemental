@@ -15,13 +15,13 @@ function readySlides()
     slides[slides.length] = new slideContent("Date", "What is today's date?", 1, "text", "date");
     slides[slides.length] = new slideContent("Title", "What is the title of your paper?", 1, "text", "title");
     slides[slides.length] = new slideContent("Opening Paragraph: Intro",
-                                             "In one or two sentences, tell the reader why the subject of [title] is important.",
+                                             "In one or two sentences, tell the reader why the subject of <span class=\"title\"></span> is important.",
                                              1, "textarea", "introSentence");
     slides[slides.length] = new slideContent("Opening Paragraph: Supporting Sentence",
                                              "Talk about some details that prove your point, aim for 5.",
                                              5, "textarea", "openParaSupporting");
     slides[slides.length] = new slideContent("Opening Paragraph: Thesis",
-                                             "In one sentence, tell the reader what your opinion on the subject of [title] is.",
+                                             "In one sentence, tell the reader what your opinion on the subject of <span class=\"title\"></span> is.",
                                              1, "textarea", "thesis");
     slides[slides.length] = new slideContent("Opening Paragraph: Transition",
                                              "In one sentence mention your first idea in a different way.",
