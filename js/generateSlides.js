@@ -1,3 +1,31 @@
+/* Essay Elemental
+ *
+ * Description: A web application to help students learn how to build and write
+ *              essays of varying degrees of difficulty. The student is asked a
+ *              simple series of questions, breaking down the essay creation
+ *              process into small bite-sized pieces that will make it fairly
+ *              easy to complete.
+ *
+ * Setup:       slideContent holds the information that is required to construct
+ *              the slides and essay. The required information includes the title
+ *              of the question, the question itself, the number of fields required
+ *              to answer the question, the type of input field to be used, and the
+ *              id/class/identifier for the input type.
+ *
+ * Dynamic Gen: In order to make the process easier and to follow the DRY mantra,
+ *              the essay questions and components are generated dynamically.
+ *              For every slide, a new "item" is created in the Bootstrap Carousel
+ *              with all the required information. The naming scheme of the elements
+ *              are standardized so that linking buttons and textboxes to the essay
+ *              components is simplified. Ex: title0Output = essay component,
+ *              title0 = input field for the title, title0Submit = button to make
+ *              the necessary changes to the page. The integer in the middle
+ *              identifies which one we're referring to, incase of multipart questions
+ *              like asking for supporting details for paragraphs. In those cases,
+ *              the number will be 1-5+.
+ */
+
+// Class to hold the content of the slides/spans that will be generated
 function slideContent(title, question, numFields, inputField, inputName)
 {
     this.title = title;
@@ -7,6 +35,7 @@ function slideContent(title, question, numFields, inputField, inputName)
     this.inputName = inputName;
 }
 
+// Create the slides here and insert it into the slides array
 function readySlides()
 {
     var slides = [];
@@ -15,13 +44,13 @@ function readySlides()
     slides[slides.length] = new slideContent("Date", "What is today's date?", 1, "text", "date");
     slides[slides.length] = new slideContent("Title", "What is the title of your paper?", 1, "text", "title");
     slides[slides.length] = new slideContent("Opening Paragraph: Intro",
-                                             "In one or two sentences, tell the reader why the subject of <span class=\"title\"></span> is important.",
+                                             "In one or two sentences, tell the reader why the subject of <span class=\"title0Output\"></span> is important.",
                                              1, "textarea", "introSentence");
     slides[slides.length] = new slideContent("Opening Paragraph: Supporting Sentence",
                                              "Talk about some details that prove your point, aim for 5.",
                                              5, "textarea", "openParaSupporting");
     slides[slides.length] = new slideContent("Opening Paragraph: Thesis",
-                                             "In one sentence, tell the reader what your opinion on the subject of <span class=\"title\"></span> is.",
+                                             "In one sentence, tell the reader what your opinion on the subject of <span class=\"title0Output\"></span> is.",
                                              1, "textarea", "thesis");
     slides[slides.length] = new slideContent("Opening Paragraph: Transition",
                                              "In one sentence mention your first idea in a different way.",
@@ -45,10 +74,14 @@ function readySlides()
 // Document manipulation
 $(document).ready(function()
 {
+    // Get the slides
     slides = readySlides();
 
+    // Loop through the slides and begin constructing the page
     for (i = 0; i < slides.length; ++i)
     {
+        // 1 slide is needed per question, and extra slides are needed for lengthy
+        // multipart questions
         var numFields = slides[i].numFields;
         for (j = 0; j < numFields; ++j)
         {
@@ -64,15 +97,19 @@ $(document).ready(function()
             var title = (numFields > 1) ? slides[i].title + ' ' + (j + 1) : slides[i].title;
             slide[slide.length] = '<h2>' + title + '</h2>';
 
+            // this is the questions
             slide[slide.length] = '<p class="lead">' + slides[i].question + '</p>';
             
+            // this will be the unique name/id for the spans/inputs
+            var uniqueID = slides[i].inputName + j;
+
             // It's either a text or textarea input
             slide[slide.length] = (slides[i].inputField === "text") ?
-                '<br><input name="' + (slides[i].inputName + j) + '" id="' + (slides[i].inputName + j) + '" type="' + slides[i].inputField + '"><br>'
+                '<br><input name="' + uniqueID + '" id="' + uniqueID + '" type="' + slides[i].inputField + '"><br>'
                 :
-                '<br><textarea name="' + (slides[i].inputName + j) + '" id="' + (slides[i].inputName + j) + '" type="' + slides[i].inputField + '" wrap="soft"></textarea><br>';
+                '<br><textarea name="' + uniqueID + '" id="' + uniqueID + '" type="' + slides[i].inputField + '" wrap="soft"></textarea><br>';
 
-            slide[slide.length] = '<a id="' + (slides[i].inputName + j) + 'Submit" class="btn btn-large btn-primary">Submit</a>';
+            slide[slide.length] = '<a id="' + uniqueID + 'Submit" class="btn btn-large btn-primary">Submit</a>';
             slide[slide.length] = '</div>';
             slide[slide.length] = '</div>';
             slide[slide.length] = '</div>';
@@ -81,22 +118,21 @@ $(document).ready(function()
 
             // Add the spans for essay creation
             // intial 3 elements like name, date, title
-            var spanName = slides[i].inputName + j;
             if (i < 3)
             {
                 // center the title
                 if (slides[i].inputName === "title")
                 {
-                    $('#essay').append('<br><center><span id="' + spanName + 'Output">');
+                    $('#essay').append('<br><center><span class="' + uniqueID + 'Output">');
                 }
                 else
                 {
-                    $('#essay').append('<br><span id="' + spanName + 'Output">');
+                    $('#essay').append('<br><span class="' + uniqueID + 'Output">');
                 }
             }
             else
             {
-                $('#essay').append('<span id="' + spanName + 'Output">');
+                $('#essay').append('<span class="' + uniqueID + 'Output">');
             }
         }
     }
@@ -111,7 +147,7 @@ $(document).ready(function()
         var inputName = $(this).attr("id").replace('Submit', '');
 
         // Clear the span first then put in the value of the textbox
-        $("#" + spanName).html('');
-        $("#" + spanName).append($("#" + inputName).val());
+        $("." + spanName).html('');
+        $("." + spanName).append($("#" + inputName).val());
     });
 });
