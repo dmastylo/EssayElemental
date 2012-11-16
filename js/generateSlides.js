@@ -64,54 +64,56 @@ function slideContent(title, question, numFields, inputField, inputName)
 // Create the slides here and insert it into the slides array
 function readySlides()
 {
-    var slides = [];
+    var slidesContent = [];
 
-    slides[slides.length] = new slideContent("Name", "What is your first and last name?", 1, "text", "userName");
-    slides[slides.length] = new slideContent("Date", "What is today's date?", 1, "text", "date");
-    slides[slides.length] = new slideContent("Title", "What is the title of your paper?", 1, "text", "title");
-    slides[slides.length] = new slideContent("Opening Paragraph: Intro",
-                                             "In one or two sentences, tell the reader why the subject of <span class=\"title0Output\"></span> is important.",
-                                             1, "textarea", "introSentence");
-    slides[slides.length] = new slideContent("Opening Paragraph: Supporting Sentence",
-                                             "Talk about some details that prove your point, aim for 5.",
-                                             5, "textarea", "openParaSupporting");
-    slides[slides.length] = new slideContent("Opening Paragraph: Thesis",
-                                             "In one sentence, tell the reader what your opinion on the subject of <span class=\"title0Output\"></span> is.",
-                                             1, "textarea", "thesis");
-    slides[slides.length] = new slideContent("Opening Paragraph: Transition",
-                                             "In one sentence mention your first idea in a different way.",
-                                             1, "textarea", "openParaTransition");
-    slides[slides.length] = new slideContent("1st Supportive Paragraph: Intro",
-                                             "Say why idea 1 is important and link it to the transition sentence you just used.",
-                                             1, "textarea", "para1Intro");
-    slides[slides.length] = new slideContent("1st Supportive Paragraph: Supporting Sentence",
-                                             "State a fact that supports your claim.",
-                                             5, "textarea", "para1Supporting");
-    slides[slides.length] = new slideContent("1st Supportive Paragraph: Recap",
-                                             "Restate your idea.",
-                                             1, "textarea", "para1Recap");
-    slides[slides.length] = new slideContent("1st Supportive Paragraph: Transition",
-                                             "In one sentence, mention your first idea in a different way.",
-                                             1, "textarea", "openParaTransition");
+    slidesContent[slidesContent.length] = new slideContent("Name", "What is your first and last name?", 1, "text", "userName");
+    slidesContent[slidesContent.length] = new slideContent("Date", "What is today's date?", 1, "text", "date");
+    slidesContent[slidesContent.length] = new slideContent("Title", "What is the title of your paper?", 1, "text", "title");
+    slidesContent[slidesContent.length] = new slideContent("Opening Paragraph: Intro",
+                                                           "In one or two sentences, tell the reader why the subject of <span class=\"title0Output\"></span> is important.",
+                                                           1, "textarea", "introSentence");
+    slidesContent[slidesContent.length] = new slideContent("Opening Paragraph: Supporting Sentence",
+                                                           "Talk about some details that prove your point, aim for 5.",
+                                                           5, "textarea", "openParaSupporting");
+    slidesContent[slidesContent.length] = new slideContent("Opening Paragraph: Thesis",
+                                                           "In one sentence, tell the reader what your opinion on the subject of <span class=\"title0Output\"></span> is.",
+                                                           1, "textarea", "thesis");
+    slidesContent[slidesContent.length] = new slideContent("Opening Paragraph: Transition",
+                                                           "In one sentence mention your first idea in a different way.",
+                                                           1, "textarea", "openParaTransition");
+    slidesContent[slidesContent.length] = new slideContent("1st Supportive Paragraph: Intro",
+                                                           "Say why idea 1 is important and link it to the transition sentence you just used.",
+                                                           1, "textarea", "para1Intro");
+    slidesContent[slidesContent.length] = new slideContent("1st Supportive Paragraph: Supporting Sentence",
+                                                           "State a fact that supports your claim.",
+                                                           5, "textarea", "para1Supporting");
+    slidesContent[slidesContent.length] = new slideContent("1st Supportive Paragraph: Recap",
+                                                           "Restate your idea.",
+                                                           1, "textarea", "para1Recap");
+    slidesContent[slidesContent.length] = new slideContent("1st Supportive Paragraph: Transition",
+                                                           "In one sentence, mention your first idea in a different way.",
+                                                           1, "textarea", "openParaTransition");
 
-    return slides;
+    return slidesContent;
 }
 
 // Document manipulation
 $(document).ready(function()
 {
     // Get the slides
-    slides = readySlides();
+    var slidesContent = readySlides();
 
-    // current slide location
-    var currentSlide = 0;
+    // slide locations
+    var numSlides = 0;
+    var currentSlide = 1;
+    var mostDone = 0;
 
     // Loop through the slides and begin constructing the page
-    for (i = 0; i < slides.length; ++i)
+    for (i = 0; i < slidesContent.length; ++i)
     {
         // 1 slide is needed per question, and extra slides are needed for lengthy
         // multipart questions
-        var numFields = slides[i].numFields;
+        var numFields = slidesContent[i].numFields;
         for (j = 0; j < numFields; ++j)
         {
             var slide = [];
@@ -122,27 +124,27 @@ $(document).ready(function()
                      '<div class="container">',
                      '<div class="carousel-caption">'];
             // TODO make this work
-            // slide = slides[i].generateItem(i);
+            // slide = slidesContent[i].generateItem(i);
 
             // determine what the title is based on the numFields
-            var title = (numFields > 1) ? slides[i].title + ' ' + (j + 1) : slides[i].title;
+            var title = (numFields > 1) ? slidesContent[i].title + ' ' + (j + 1) : slidesContent[i].title;
             slide[slide.length] = '<h2>' + title + '</h2>';
             // TODO make this work
-            // slide[slide.length] = slides[i].generateTitle(i, j);
+            // slide[slide.length] = slidesContent[i].generateTitle(i, j);
 
             // generate question
-            slide[slide.length] = '<p class="lead">' + slides[i].question + '</p>';
+            slide[slide.length] = '<p class="lead">' + slidesContent[i].question + '</p>';
             // TODO make this work
-            // slide[slide.length] = slides[i].generateQuestion();
+            // slide[slide.length] = slidesContent[i].generateQuestion();
             
             // this will be the unique name/id for the spans/inputs
-            var uniqueID = slides[i].inputName + j;
+            var uniqueID = slidesContent[i].inputName + j;
 
             // It's either a text or textarea input
-            slide[slide.length] = (slides[i].inputField === "text") ?
-                '<br><input name="' + uniqueID + '" id="' + uniqueID + '" type="' + slides[i].inputField + '"><br>'
+            slide[slide.length] = (slidesContent[i].inputField === "text") ?
+                '<br><input name="' + uniqueID + '" id="' + uniqueID + '" type="' + slidesContent[i].inputField + '"><br>'
                 :
-                '<br><textarea name="' + uniqueID + '" id="' + uniqueID + '" type="' + slides[i].inputField + '" wrap="soft"></textarea><br>';
+                '<br><textarea name="' + uniqueID + '" id="' + uniqueID + '" type="' + slidesContent[i].inputField + '" wrap="soft"></textarea><br>';
 
             slide[slide.length] = '<a id="' + uniqueID + 'Submit" class="btn btn-large btn-primary">Submit</a>';
             slide[slide.length] = '</div>';
@@ -156,7 +158,7 @@ $(document).ready(function()
             if (i < 3)
             {
                 // center the title
-                if (slides[i].inputName === "title")
+                if (slidesContent[i].inputName === "title")
                 {
                     $('#essay').append('<br><center><span class="' + uniqueID + 'Output">');
                 }
@@ -169,6 +171,8 @@ $(document).ready(function()
             {
                 $('#essay').append('<span class="' + uniqueID + 'Output">');
             }
+
+            ++numSlides;
         }
     }
 
@@ -178,7 +182,6 @@ $(document).ready(function()
     
 
     // Submit button
-    // TODO: input validation
     $(".btn").click(function()
     {
         // grab the textbox value
@@ -193,21 +196,30 @@ $(document).ready(function()
             // Clear the span first then put in the value of the textbox
             $("." + spanName).html('');
             $("." + spanName).append(inputValue);
+            ++mostDone;
 
-            $(".right").show();
+            // Only show it if we're not at the last slide
+            if (currentSlide !== numSlides)
+            {
+                $(".right").show();
+            }
         }
         // TODO: display some error message
         else
         {
-
+            
         }
     });
 
     // Right carousel button
     $(".right").click(function()
     {
-        // Disable the "Next" button after it is pressed
-        $(this).hide();
+        // Disable the "Next" button after it is pressed, but only if that slide
+        // has not been completed yet
+        if (currentSlide === mostDone)
+        {
+            $(this).hide();
+        }
         $(".left").show();
         ++currentSlide;
     });
@@ -220,7 +232,7 @@ $(document).ready(function()
         --currentSlide;
         
         // Disable the back button if at the initial slide
-        if (currentSlide === 0)
+        if (currentSlide === 1)
         {
             $(this).hide();
         }
