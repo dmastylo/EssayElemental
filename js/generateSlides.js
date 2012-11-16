@@ -25,7 +25,7 @@
  *              the number will be 1-5+.
  */
 
-// Class to hold the content of the slides/spans that will be generated
+// Class to hold the content and methods of the slides/spans that will be generated
 function slideContent(title, question, numFields, inputField, inputName)
 {
     this.title = title;
@@ -33,6 +33,32 @@ function slideContent(title, question, numFields, inputField, inputName)
     this.numFields = numFields;
     this.inputField = inputField;
     this.inputName = inputName;
+
+    // TODO: get these functions to work
+    // Generates the first few divs necessary for the carousel
+    function generateItem(index)
+    {
+        var slide = [];
+        var item = (index === 0) ? "item active" : "item";
+        slide = ['<div class="' + item + '">',
+                 '<div class="container">',
+                 '<div class="carousel-caption">'];
+        console.log(slide);
+        return slide;
+    }
+
+    // Generate the title of the slide
+    function generateTitle(i, j)
+    {
+        var generatedTitle = (numFields > 1) ? title + ' ' + (j + 1) : title;
+        return '<h2>' + generatedTitle + '</h2>';
+    }
+
+    // Generate the question
+    function generateQuestion()
+    {
+        return '<p class="lead">' + question + '</p>';
+    }
 }
 
 // Create the slides here and insert it into the slides array
@@ -77,6 +103,9 @@ $(document).ready(function()
     // Get the slides
     slides = readySlides();
 
+    // current slide location
+    var currentSlide = 0;
+
     // Loop through the slides and begin constructing the page
     for (i = 0; i < slides.length; ++i)
     {
@@ -92,13 +121,19 @@ $(document).ready(function()
             slide = ['<div class="' + item + '">',
                      '<div class="container">',
                      '<div class="carousel-caption">'];
+            // TODO make this work
+            // slide = slides[i].generateItem(i);
 
             // determine what the title is based on the numFields
             var title = (numFields > 1) ? slides[i].title + ' ' + (j + 1) : slides[i].title;
             slide[slide.length] = '<h2>' + title + '</h2>';
+            // TODO make this work
+            // slide[slide.length] = slides[i].generateTitle(i, j);
 
-            // this is the questions
+            // generate question
             slide[slide.length] = '<p class="lead">' + slides[i].question + '</p>';
+            // TODO make this work
+            // slide[slide.length] = slides[i].generateQuestion();
             
             // this will be the unique name/id for the spans/inputs
             var uniqueID = slides[i].inputName + j;
@@ -137,17 +172,57 @@ $(document).ready(function()
         }
     }
 
+    // hide the carousel navigation initially
+    $(".right").hide();
+    $(".left").hide();
+    
+
     // Submit button
     // TODO: input validation
-    $(".btn").click(function () {
-        // the span's name is === button's name only Submit replaced by Output
-        var spanName = $(this).attr("id").replace('Submit', 'Output');
-
+    $(".btn").click(function()
+    {
         // grab the textbox value
         var inputName = $(this).attr("id").replace('Submit', '');
+        var inputValue = $("#" + inputName).val();
 
-        // Clear the span first then put in the value of the textbox
-        $("." + spanName).html('');
-        $("." + spanName).append($("#" + inputName).val());
+        if (inputValue !== "")
+        {
+            // the span's name is === button's name only Submit replaced by Output
+            var spanName = $(this).attr("id").replace('Submit', 'Output');
+
+            // Clear the span first then put in the value of the textbox
+            $("." + spanName).html('');
+            $("." + spanName).append(inputValue);
+
+            $(".right").show();
+        }
+        // TODO: display some error message
+        else
+        {
+
+        }
+    });
+
+    // Right carousel button
+    $(".right").click(function()
+    {
+        // Disable the "Next" button after it is pressed
+        $(this).hide();
+        $(".left").show();
+        ++currentSlide;
+    });
+
+    // Left carousel button
+    $(".left").click(function()
+    {
+        // Show the Next button; moving back to previously filled out slide
+        $(".right").show();
+        --currentSlide;
+        
+        // Disable the back button if at the initial slide
+        if (currentSlide === 0)
+        {
+            $(this).hide();
+        }
     });
 });
