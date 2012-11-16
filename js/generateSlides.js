@@ -81,21 +81,22 @@ $(document).ready(function()
 
             // Add the spans for essay creation
             // intial 3 elements like name, date, title
+            var spanName = slides[i].inputName + j;
             if (i < 3)
             {
                 // center the title
                 if (slides[i].inputName === "title")
                 {
-                    $('#essay').append('<br><center><span id="' + (slides[i].inputName + j) + 'Output">');
+                    $('#essay').append('<br><center><span id="' + spanName + 'Output">');
                 }
                 else
                 {
-                    $('#essay').append('<br><span id="' + (slides[i].inputName + j) + 'Output">');
+                    $('#essay').append('<br><span id="' + spanName + 'Output">');
                 }
             }
             else
             {
-                $('#essay').append('<span id="' + (slides[i].inputName + j) + 'Output">');
+                $('#essay').append('<span id="' + spanName + 'Output">');
             }
         }
     }
