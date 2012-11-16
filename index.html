@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+    <head>
         <meta charset="utf-8">
         <title>Demo</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,46 +23,46 @@
         <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
         <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
         <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
-  </head>
-  <body>
-    <!-- Content -->
-    <div id="wrap">
-      <div class="container">
-        <div id="essay"></div>
+    </head>
+    <body>
+        <!-- Content -->
+        <div id="wrap">
+            <div class="container">
+                <div id="essay"><!-- Filled in by generateSlides.js --></div>
+                <div id="push"></div>
+            </div>
+        </div>
 
-        <div id="push"></div>
-      </div>
-    </div>
+        <!-- Carousel -->
+        <div id="footer">
+            <div id="myCarousel" class="carousel slide">
+                <form name="essayBuilder">
+                    <div class="carousel-inner">
+                    <!-- Filled in by generateSlides.js -->
+                    </div>
+                </form>
 
-    <!-- Carousel -->
-    <div id="footer">
-      <div id="myCarousel" class="carousel slide">
-        <form name="essayBuilder">
-          <div class="carousel-inner">
-            <!-- Filled in by generateSlides.js -->
-          </div>
-        </form>
-        <a class="left carousel-control" href="#myCarousel" data-slide="prev">Back</a>
-        <a class="right carousel-control" href="#myCarousel" data-slide="next">Next</a>
-      </div><!-- end myCarousel -->
-    </div>
+                <a class="left carousel-control" href="#myCarousel" data-slide="prev">Back</a>
+                <a class="right carousel-control" href="#myCarousel" data-slide="next">Next</a>
+            </div><!-- end myCarousel -->
+        </div>
 
-    <!-- Javascript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="js/jquery-1.8.2.min.js" language="Javascript" type="text/javascript"></script>
-    <script src="js/bootstrap.min.js" language="Javascript" type="text/javascript"></script>
+        <!-- Javascript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="js/jquery-1.8.2.min.js" language="Javascript" type="text/javascript"></script>
+        <script src="js/bootstrap.min.js" language="Javascript" type="text/javascript"></script>
 
-    <!-- Essay Builder -->
-    <script src="js/generateSlides.js" language="Javascript" type="text/javascript"></script>
+        <!-- Essay Builder -->
+        <script src="js/generateSlides.js" language="Javascript" type="text/javascript"></script>
 
-    <!-- Carousel -->
-    <script language="Javascript" type="text/javascript">
-      $(document).ready(function(){
-        $('#myCarousel').carousel({
-          interval: false
-        });
-      });
-    </script>
-  </body>
+        <!-- Carousel -->
+        <script language="Javascript" type="text/javascript">
+            $(document).ready(function(){
+                $('#myCarousel').carousel({
+                    interval: false
+                });
+            });
+        </script>
+    </body>
 </html>

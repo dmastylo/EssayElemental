@@ -7,38 +7,46 @@ function slideContent(title, question, numFields, inputField, inputName)
     this.inputName = inputName;
 }
 
-var slides = [];
+function readySlides()
+{
+    var slides = [];
 
-slides[slides.length] = new slideContent("Name", "What is your first and last name?", 1, "text", "userName");
-slides[slides.length] = new slideContent("Date", "What is today's date?", 1, "text", "date");
-slides[slides.length] = new slideContent("Title", "What is the title of your paper?", 1, "text", "title");
-slides[slides.length] = new slideContent("Opening Paragraph: Intro",
-                                         "In one or two sentences, tell the reader why the subject of [title] is important.",
-                                         1, "textarea", "introSentence");
-slides[slides.length] = new slideContent("Opening Paragraph: Supporting Sentence",
-                                         "Talk about some details that prove your point, aim for 5.",
-                                         5, "textarea", "openParaSupporting");
-slides[slides.length] = new slideContent("Opening Paragraph: Thesis",
-                                         "In one sentence, tell the reader what your opinion on the subject of [title] is.",
-                                         1, "textarea", "thesis");
-slides[slides.length] = new slideContent("Opening Paragraph: Transition",
-                                         "In one sentence mention your first idea in a different way.",
-                                         1, "textarea", "openParaTransition");
-slides[slides.length] = new slideContent("1st Supportive Paragraph: Intro",
-                                         "Say why idea 1 is important and link it to the transition sentence you just used.",
-                                         1, "textarea", "para1Intro");
-slides[slides.length] = new slideContent("1st Supportive Paragraph: Supporting Sentence",
-                                         "State a fact that supports your claim.",
-                                         5, "textarea", "para1Supporting");
-slides[slides.length] = new slideContent("1st Supportive Paragraph: Recap",
-                                         "Restate your idea.",
-                                         1, "textarea", "para1Recap");
-slides[slides.length] = new slideContent("1st Supportive Paragraph: Transition",
-                                         "In one sentence, mention your first idea in a different way.",
-                                         1, "textarea", "openParaTransition");
+    slides[slides.length] = new slideContent("Name", "What is your first and last name?", 1, "text", "userName");
+    slides[slides.length] = new slideContent("Date", "What is today's date?", 1, "text", "date");
+    slides[slides.length] = new slideContent("Title", "What is the title of your paper?", 1, "text", "title");
+    slides[slides.length] = new slideContent("Opening Paragraph: Intro",
+                                             "In one or two sentences, tell the reader why the subject of [title] is important.",
+                                             1, "textarea", "introSentence");
+    slides[slides.length] = new slideContent("Opening Paragraph: Supporting Sentence",
+                                             "Talk about some details that prove your point, aim for 5.",
+                                             5, "textarea", "openParaSupporting");
+    slides[slides.length] = new slideContent("Opening Paragraph: Thesis",
+                                             "In one sentence, tell the reader what your opinion on the subject of [title] is.",
+                                             1, "textarea", "thesis");
+    slides[slides.length] = new slideContent("Opening Paragraph: Transition",
+                                             "In one sentence mention your first idea in a different way.",
+                                             1, "textarea", "openParaTransition");
+    slides[slides.length] = new slideContent("1st Supportive Paragraph: Intro",
+                                             "Say why idea 1 is important and link it to the transition sentence you just used.",
+                                             1, "textarea", "para1Intro");
+    slides[slides.length] = new slideContent("1st Supportive Paragraph: Supporting Sentence",
+                                             "State a fact that supports your claim.",
+                                             5, "textarea", "para1Supporting");
+    slides[slides.length] = new slideContent("1st Supportive Paragraph: Recap",
+                                             "Restate your idea.",
+                                             1, "textarea", "para1Recap");
+    slides[slides.length] = new slideContent("1st Supportive Paragraph: Transition",
+                                             "In one sentence, mention your first idea in a different way.",
+                                             1, "textarea", "openParaTransition");
 
+    return slides;
+}
+
+// Document manipulation
 $(document).ready(function()
 {
+    slides = readySlides();
+
     for (i = 0; i < slides.length; ++i)
     {
         var numFields = slides[i].numFields;
@@ -92,10 +100,16 @@ $(document).ready(function()
         }
     }
 
+    // Submit button
+    // TODO: input validation
     $(".btn").click(function () {
+        // the span's name is === button's name only Submit replaced by Output
         var spanName = $(this).attr("id").replace('Submit', 'Output');
+
+        // grab the textbox value
         var inputName = $(this).attr("id").replace('Submit', '');
-        // Clear first
+
+        // Clear the span first then put in the value of the textbox
         $("#" + spanName).html('');
         $("#" + spanName).append($("#" + inputName).val());
     });
