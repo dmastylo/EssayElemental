@@ -34,32 +34,74 @@ function slideContent(title, question, numFields, inputField, inputName)
     this.inputField = inputField;
     this.inputName = inputName;
 
-    // TODO: get these functions to work
     // Generates the first few divs necessary for the carousel
-    function generateItem(index)
+    this.generateItem = function(index)
     {
-        var slide = [];
         var item = (index === 0) ? "item active" : "item";
-        slide = ['<div class="' + item + '">',
-                 '<div class="container">',
-                 '<div class="carousel-caption">'];
-        console.log(slide);
-        return slide;
-    }
+        return ['<div class="' + item + '">',
+                '<div class="container">',
+                '<div class="carousel-caption">'];
+    };
 
     // Generate the title of the slide
-    function generateTitle(i, j)
+    this.generateTitle = function(i, j)
     {
         var generatedTitle = (numFields > 1) ? title + ' ' + (j + 1) : title;
         return '<h2>' + generatedTitle + '</h2>';
-    }
+    };
 
     // Generate the question
-    function generateQuestion()
+    this.generateQuestion = function()
     {
         return '<p class="lead">' + question + '</p>';
-    }
+    };
+
+    // Generate input field
+    this.generateInput = function()
+    {
+        slide[slide.length] = (slidesContent[i].inputField === "text") ?
+            '<br><input name="' + uniqueID + '" id="' + uniqueID + '" type="' + slidesContent[i].inputField + '"><br>'
+            :
+            '<br><textarea name="' + uniqueID + '" id="' + uniqueID + '" type="' + slidesContent[i].inputField + '" wrap="soft"></textarea><br>';
+
+        slide[slide.length] = '<a id="' + uniqueID + 'Submit" class="btn btn-large btn-primary">Submit</a>';
+        slide[slide.length] = '</div>';
+        slide[slide.length] = '</div>';
+        slide[slide.length] = '</div>';
+    };
 }
+
+// SlideContent.prototype =
+// {
+//     generateItem: function(index)
+//     {
+//         var item = (index === 0) ? "item active" : "item";
+//         return ['<div class="' + item + '">',
+//                 '<div class="container">',
+//                 '<div class="carousel-caption">'];
+//     },
+//     generateTitle: function(i, j)
+//     {
+//         var generatedTitle = (this.numFields > 1) ? this.title + ' ' + (j + 1) : this.title;
+//         return '<h2>' + generatedTitle + '</h2>';
+//     },
+//     generateQuestion: function()
+//     {
+//         return '<p class="lead">' + this.question + '</p>';
+//     },
+//     generateInput: function()
+//     {
+//         slide[slide.length] = (slidesContent[i].inputField === "text") ?
+//             '<br><input name="' + uniqueID + '" id="' + uniqueID + '" type="' + slidesContent[i].inputField + '"><br>'
+//             :
+//             '<br><textarea name="' + uniqueID + '" id="' + uniqueID + '" type="' + slidesContent[i].inputField + '" wrap="soft"></textarea><br>';
+
+//         slide[slide.length] = '<a id="' + uniqueID + 'Submit" class="btn btn-large btn-primary">Submit</a>';
+//         slide[slide.length] = '</div>';
+//         slide[slide.length] = '</div>';
+//         slide[slide.length] = '</div>';
+//     }
+// };
 
 // Create the slides here and insert it into the slides array
 function readySlides()
@@ -79,7 +121,7 @@ function readySlides()
                                                            "In one sentence, tell the reader what your opinion on the subject of <span class=\"title0Output\"></span> is.",
                                                            1, "textarea", "thesis");
     slidesContent[slidesContent.length] = new slideContent("Opening Paragraph: Transition",
-                                                           "In one sentence mention your first idea in a different way.",
+                                                           "In one sentence mention your <span class=\"openParaSupporting0\" style=\"text-decoration: underline; color: #66d9ef;\">first idea</span> in a different way.",
                                                            1, "textarea", "openParaTransition");
     slidesContent[slidesContent.length] = new slideContent("1st Supportive Paragraph: Intro",
                                                            "Say why idea 1 is important and link it to the transition sentence you just used.",
@@ -119,23 +161,13 @@ $(document).ready(function()
             var slide = [];
 
             // initialize with initial divs
-            var item = (i === 0) ? "item active" : "item";
-            slide = ['<div class="' + item + '">',
-                     '<div class="container">',
-                     '<div class="carousel-caption">'];
-            // TODO make this work
-            // slide = slidesContent[i].generateItem(i);
+            slide = slidesContent[i].generateItem(i);
 
             // determine what the title is based on the numFields
-            var title = (numFields > 1) ? slidesContent[i].title + ' ' + (j + 1) : slidesContent[i].title;
-            slide[slide.length] = '<h2>' + title + '</h2>';
-            // TODO make this work
-            // slide[slide.length] = slidesContent[i].generateTitle(i, j);
+            slide[slide.length] = slidesContent[i].generateTitle(i, j);
 
             // generate question
-            slide[slide.length] = '<p class="lead">' + slidesContent[i].question + '</p>';
-            // TODO make this work
-            // slide[slide.length] = slidesContent[i].generateQuestion();
+            slide[slide.length] = slidesContent[i].generateQuestion();
             
             // this will be the unique name/id for the spans/inputs
             var uniqueID = slidesContent[i].inputName + j;
@@ -207,7 +239,7 @@ $(document).ready(function()
         // TODO: display some error message
         else
         {
-            
+
         }
     });
 
@@ -235,6 +267,50 @@ $(document).ready(function()
         if (currentSlide === 1)
         {
             $(this).hide();
+        }
+    });
+
+    // TODO: refactor to be generic
+    $(".openParaSupporting0").hover(
+    function()
+    {
+        var spanName = $(this).attr("class") + "Output";
+        $(this).addClass("highlight-idea");
+        $("." + spanName).addClass("highlight-text");
+        console.log(spanName);
+    },
+    function()
+    {
+        var spanName = $(this).attr("class") + "Output";
+        $(this).removeClass("highlight-idea");
+        $("." + spanName).removeClass("highlight-text");
+        console.log(spanName);
+    });
+
+    // keyboard listener to go NEXT when right arrowkey pressed
+    $(document).keydown(function(e)
+    {
+        if (e.keyCode === 39)
+        {
+            if ($(".right").css("display") !== "none")
+            {
+                $(".right").trigger('click');
+            }
+            return false;
+        }
+    });
+
+    // keyboard listener to go BACK when left arrowkey pressed
+    $(document).keydown(function(e)
+    {
+        if (e.keyCode === 37)
+        {
+            if ($(".left").css("display") !== "none")
+            {
+                $(".left").trigger('click');
+            }
+
+            return false;
         }
     });
 });
