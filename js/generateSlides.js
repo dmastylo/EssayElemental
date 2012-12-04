@@ -186,13 +186,12 @@ $(document).ready(function()
             $('.carousel-inner').append(slide.join(''));
 
             // Add the spans for essay creation
-            // intial 3 elements like name, date, title
+            // center the title
             if (i < 3)
             {
-                // center the title
                 if (slidesContent[i].inputName === "title")
                 {
-                    $('#essay').append('<br><center><span class="' + uniqueID + 'Output">');
+                    $('#essay').append('<center><span class="' + uniqueID + 'Output">');
                 }
                 else
                 {
@@ -218,16 +217,21 @@ $(document).ready(function()
     {
         // grab the textbox value
         var inputName = $(this).attr("id").replace('Submit', '');
-        var inputValue = $("#" + inputName).val();
+        var inputValue = $.trim($("#" + inputName).val());
 
         if (inputValue !== "")
         {
-            // the span's name is === button's name only Submit replaced by Output
+            // add a trailing space
+            inputValue = inputValue + " ";
+
+            // the span's name is === button's name with 'Submit' replaced by 'Output'
             var spanName = $(this).attr("id").replace('Submit', 'Output');
 
             // Clear the span first then put in the value of the textbox
             $("." + spanName).html('');
             $("." + spanName).append(inputValue);
+            // TODO don't double space slide title tag
+            $("." + spanName).addClass("double-spaced");
             ++mostDone;
 
             // Only show it if we're not at the last slide
@@ -270,7 +274,7 @@ $(document).ready(function()
         }
     });
 
-    // TODO: refactor to be generic
+    // TODO: refactor to be generic and work correctly
     $(".openParaSupporting0").hover(
     function()
     {
@@ -287,6 +291,9 @@ $(document).ready(function()
         console.log(spanName);
     });
 
+    // TODO fix keyboard listeners so vigorous pressing doesn't allow navigation
+    // to slides that aren't supposed to be available yet
+    
     // keyboard listener to go NEXT when right arrowkey pressed
     $(document).keydown(function(e)
     {
