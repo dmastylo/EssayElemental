@@ -12,6 +12,7 @@ body
   /*padding-bottom: 40px;*/
   background-color: #272822;
   color: #66d9ef;
+  /*overflow: hidden;*/
 }
 
 textarea {
@@ -25,6 +26,10 @@ textarea {
 }
 
 /* Essay output styling */
+#essay {
+    overflow: auto;
+}
+
 .double-spaced {
     line-height: 250%;
 }
@@ -141,9 +146,11 @@ textarea {
 /* Sticky Footer */
 /* Wrapper for page content to push down footer */
 #wrap {
-    min-height: 100%;
-    height: auto !important;
-    height: 100%;
+    /*min-height: 100%;*/
+    /*height: auto !important;*/
+    /*height: 100%;*/
+    overflow: auto;
+    
     /* Negative indent footer by it's height */
     margin: 0 auto -250px;
 }
@@ -151,4 +158,11 @@ textarea {
 /* Set the fixed height of the footer here */
 #push, #footer {
     height: 250px;
+}
+
+#footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
 }

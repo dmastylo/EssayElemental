@@ -103,38 +103,83 @@ function slideContent(title, question, numFields, inputField, inputName)
 //     }
 // };
 
-// Create the slides here and insert it into the slides array
+// Create the slides here and insert it into the slidesContent array
 function readySlides()
 {
     var slidesContent = [];
 
+    // Title and whatnot
     slidesContent[slidesContent.length] = new slideContent("Name", "What is your first and last name?", 1, "text", "userName");
     slidesContent[slidesContent.length] = new slideContent("Date", "What is today's date?", 1, "text", "date");
     slidesContent[slidesContent.length] = new slideContent("Title", "What is the title of your paper?", 1, "text", "title");
+
+    // Introductory Paragraph
     slidesContent[slidesContent.length] = new slideContent("Opening Paragraph: Intro",
                                                            "In one or two sentences, tell the reader why the subject of <span class=\"title0Output\"></span> is important.",
                                                            1, "textarea", "introSentence");
     slidesContent[slidesContent.length] = new slideContent("Opening Paragraph: Supporting Sentence",
-                                                           "Talk about some details that prove your point, aim for 5.",
-                                                           5, "textarea", "openParaSupporting");
+                                                           "Talk about some details that prove your point.",
+                                                           3, "textarea", "openParaSupporting");
     slidesContent[slidesContent.length] = new slideContent("Opening Paragraph: Thesis",
                                                            "In one sentence, tell the reader what your opinion on the subject of <span class=\"title0Output\"></span> is.",
                                                            1, "textarea", "thesis");
     slidesContent[slidesContent.length] = new slideContent("Opening Paragraph: Transition",
-                                                           "In one sentence mention your <span class=\"openParaSupporting0\" style=\"text-decoration: underline; color: #66d9ef;\">first idea</span> in a different way.",
+                                                           "In one sentence mention your first idea in a different way.",
                                                            1, "textarea", "openParaTransition");
+
+    // First Supportive Paragraph
     slidesContent[slidesContent.length] = new slideContent("1st Supportive Paragraph: Intro",
                                                            "Say why idea 1 is important and link it to the transition sentence you just used.",
                                                            1, "textarea", "para1Intro");
     slidesContent[slidesContent.length] = new slideContent("1st Supportive Paragraph: Supporting Sentence",
                                                            "State a fact that supports your claim.",
-                                                           5, "textarea", "para1Supporting");
+                                                           3, "textarea", "para1Supporting");
     slidesContent[slidesContent.length] = new slideContent("1st Supportive Paragraph: Recap",
                                                            "Restate your idea.",
                                                            1, "textarea", "para1Recap");
     slidesContent[slidesContent.length] = new slideContent("1st Supportive Paragraph: Transition",
                                                            "In one sentence, mention your first idea in a different way.",
                                                            1, "textarea", "openParaTransition");
+
+    // Second Supportive Paragraph
+    slidesContent[slidesContent.length] = new slideContent("2nd Supportive Paragraph: Intro",
+                                                           "Say why idea 2 is important and link it to the transition sentence you just used.",
+                                                           1, "textarea", "para2Intro");
+    slidesContent[slidesContent.length] = new slideContent("2nd Supportive Paragraph: Supporting Sentence",
+                                                           "State a fact that supports your claim.",
+                                                           3, "textarea", "para2Supporting");
+    slidesContent[slidesContent.length] = new slideContent("2nd Supportive Paragraph: Recap",
+                                                           "Restate your idea.",
+                                                           1, "textarea", "para2Recap");
+    slidesContent[slidesContent.length] = new slideContent("2nd Supportive Paragraph: Transition",
+                                                           "In one sentence, mention your second idea in a different way.",
+                                                           1, "textarea", "para2Transition");
+
+
+    // Third Supportive Paragraph
+    slidesContent[slidesContent.length] = new slideContent("3rd Supportive Paragraph: Intro",
+                                                           "Say why idea 3 is important and link it to the transition sentence you just used.",
+                                                           1, "textarea", "para3Intro");
+    slidesContent[slidesContent.length] = new slideContent("3rd Supportive Paragraph: Supporting Sentence",
+                                                           "State a fact that supports your claim.",
+                                                           3, "textarea", "para3Supporting");
+    slidesContent[slidesContent.length] = new slideContent("3rd Supportive Paragraph: Recap",
+                                                           "Restate your idea.",
+                                                           1, "textarea", "para1Recap");
+    slidesContent[slidesContent.length] = new slideContent("3rd Supportive Paragraph: Transition",
+                                                           "In one sentence, mention your third idea in a different way.",
+                                                           1, "textarea", "para3Transition");
+
+    // Conclusion Paragraph
+    slidesContent[slidesContent.length] = new slideContent("Concluding Paragraph",
+                                                           "Link to the previous transition, and restate your thesis.",
+                                                           1, "textarea", "conclusionIntroSentence");
+    slidesContent[slidesContent.length] = new slideContent("Concluding Paragraph: Supporting Sentence",
+                                                           "Restate your main supporting detail.",
+                                                           3, "textarea", "conclusionSupporting");
+    slidesContent[slidesContent.length] = new slideContent("Concluding Sentence",
+                                                           "In one sentence, conclude your essay and finish off with a bang.",
+                                                           1, "textarea", "finalConclusionSentence");
 
     return slidesContent;
 }
