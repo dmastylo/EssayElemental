@@ -10,8 +10,10 @@ body
 {
   height: 100%;
   /*padding-bottom: 40px;*/
-  background-color: #272822;
-  color: #66d9ef;
+  /*background-color: #272822;
+  color: #66d9ef;*/
+  background-color: #D8D8D8;
+  color: #5a5a5a;
   /*overflow: hidden;*/
 }
 
@@ -150,7 +152,7 @@ textarea {
     /*height: auto !important;*/
     /*height: 100%;*/
     overflow: auto;
-    
+
     /* Negative indent footer by it's height */
     margin: 0 auto -250px;
 }
